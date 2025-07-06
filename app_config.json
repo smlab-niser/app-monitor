@@ -1,0 +1,376 @@
+{
+  "apps": [
+    {
+      "name": "WhatsApp",
+      "store": "playstore",
+      "id": "com.whatsapp",
+      "category": "Messaging"
+    },
+    {
+      "name": "WhatsApp",
+      "store": "appstore",
+      "id": "310633997",
+      "category": "Messaging"
+    },
+    {
+      "name": "Signal",
+      "store": "playstore",
+      "id": "org.thoughtcrime.securesms",
+      "category": "Messaging"
+    },
+    {
+      "name": "Signal",
+      "store": "appstore",
+      "id": "874139669",
+      "category": "Messaging"
+    },
+    {
+      "name": "Telegram",
+      "store": "playstore",
+      "id": "org.telegram.messenger",
+      "category": "Messaging"
+    },
+    {
+      "name": "Telegram",
+      "store": "appstore",
+      "id": "686449807",
+      "category": "Messaging"
+    },
+    {
+      "name": "Netflix",
+      "store": "playstore",
+      "id": "com.netflix.mediaclient",
+      "category": "Entertainment"
+    },
+    {
+      "name": "Netflix",
+      "store": "appstore",
+      "id": "363590051",
+      "category": "Entertainment"
+    },
+    {
+      "name": "Disney+ Hotstar",
+      "store": "playstore",
+      "id": "in.startv.hotstar",
+      "category": "Entertainment"
+    },
+    {
+      "name": "Disney+ Hotstar",
+      "store": "appstore",
+      "id": "934459219",
+      "category": "Entertainment"
+    },
+    {
+      "name": "Amazon Prime Video",
+      "store": "playstore",
+      "id": "com.amazon.avod.thirdpartyclient",
+      "category": "Entertainment"
+    },
+    {
+      "name": "Amazon Prime Video",
+      "store": "appstore",
+      "id": "545519333",
+      "category": "Entertainment"
+    },
+    {
+      "name": "YouTube",
+      "store": "playstore",
+      "id": "com.google.android.youtube",
+      "category": "Entertainment"
+    },
+    {
+      "name": "YouTube",
+      "store": "appstore",
+      "id": "544007664",
+      "category": "Entertainment"
+    },
+    {
+      "name": "Amazon Shopping",
+      "store": "playstore",
+      "id": "in.amazon.mShop.android.shopping",
+      "category": "Shopping"
+    },
+    {
+      "name": "Amazon Shopping",
+      "store": "appstore",
+      "id": "297606951",
+      "category": "Shopping"
+    },
+    {
+      "name": "Flipkart",
+      "store": "playstore",
+      "id": "com.flipkart.android",
+      "category": "Shopping"
+    },
+    {
+      "name": "Flipkart",
+      "store": "appstore",
+      "id": "742044692",
+      "category": "Shopping"
+    },
+    {
+      "name": "Blinkit",
+      "store": "playstore",
+      "id": "com.grofers.customerapp",
+      "category": "Shopping"
+    },
+    {
+      "name": "Blinkit",
+      "store": "appstore",
+      "id": "1034009238",
+      "category": "Shopping"
+    },
+    {
+      "name": "Swiggy",
+      "store": "playstore",
+      "id": "in.swiggy.android",
+      "category": "Shopping"
+    },
+    {
+      "name": "Swiggy",
+      "store": "appstore",
+      "id": "989540061",
+      "category": "Shopping"
+    },
+    {
+      "name": "Zomato",
+      "store": "playstore",
+      "id": "com.application.zomato",
+      "category": "Shopping"
+    },
+    {
+      "name": "Zomato",
+      "store": "appstore",
+      "id": "434613896",
+      "category": "Shopping"
+    },
+    {
+      "name": "Google Pay",
+      "store": "playstore",
+      "id": "com.google.android.apps.nbu.paisa.user",
+      "category": "Finance"
+    },
+    {
+      "name": "Google Pay",
+      "store": "appstore",
+      "id": "1193357041",
+      "category": "Finance"
+    },
+    {
+      "name": "PhonePe",
+      "store": "playstore",
+      "id": "com.phonepe.app",
+      "category": "Finance"
+    },
+    {
+      "name": "PhonePe",
+      "store": "appstore",
+      "id": "1170055821",
+      "category": "Finance"
+    },
+    {
+      "name": "Paytm",
+      "store": "playstore",
+      "id": "net.one97.paytm",
+      "category": "Finance"
+    },
+    {
+      "name": "Paytm",
+      "store": "appstore",
+      "id": "473941634",
+      "category": "Finance"
+    },
+    {
+      "name": "HDFC Bank MobileBanking",
+      "store": "playstore",
+      "id": "com.snapwork.hdfc",
+      "category": "Finance"
+    },
+    {
+      "name": "HDFC Bank MobileBanking",
+      "store": "appstore",
+      "id": "827837653",
+      "category": "Finance"
+    },
+    {
+      "name": "SBI YONO",
+      "store": "playstore",
+      "id": "com.sbi.lotusintouch",
+      "category": "Finance"
+    },
+    {
+      "name": "SBI YONO",
+      "store": "appstore",
+      "id": "1022254346",
+      "category": "Finance"
+    },
+    {
+      "name": "ICICI Bank iMobile Pay",
+      "store": "playstore",
+      "id": "com.csam.icici.bank.imobile",
+      "category": "Finance"
+    },
+    {
+      "name": "ICICI Bank iMobile Pay",
+      "store": "appstore",
+      "id": "1006327931",
+      "category": "Finance"
+    },
+    {
+      "name": "Google Maps",
+      "store": "playstore",
+      "id": "com.google.android.apps.maps",
+      "category": "Productivity"
+    },
+    {
+      "name": "Google Maps",
+      "store": "appstore",
+      "id": "585027354",
+      "category": "Productivity"
+    },
+    {
+      "name": "Google Drive",
+      "store": "playstore",
+      "id": "com.google.android.apps.docs",
+      "category": "Productivity"
+    },
+    {
+      "name": "Google Drive",
+      "store": "appstore",
+      "id": "507874739",
+      "category": "Productivity"
+    },
+    {
+      "name": "Google Docs",
+      "store": "playstore",
+      "id": "com.google.android.apps.docs.editors.docs",
+      "category": "Productivity"
+    },
+    {
+      "name": "Google Docs",
+      "store": "appstore",
+      "id": "842842640",
+      "category": "Productivity"
+    },
+    {
+      "name": "Microsoft Word",
+      "store": "playstore",
+      "id": "com.microsoft.office.word",
+      "category": "Productivity"
+    },
+    {
+      "name": "Microsoft Word",
+      "store": "appstore",
+      "id": "586447913",
+      "category": "Productivity"
+    },
+    {
+      "name": "Microsoft Excel",
+      "store": "playstore",
+      "id": "com.microsoft.office.excel",
+      "category": "Productivity"
+    },
+    {
+      "name": "Microsoft Excel",
+      "store": "appstore",
+      "id": "586683407",
+      "category": "Productivity"
+    },
+    {
+      "name": "Microsoft PowerPoint",
+      "store": "playstore",
+      "id": "com.microsoft.office.powerpoint",
+      "category": "Productivity"
+    },
+    {
+      "name": "Microsoft PowerPoint",
+      "store": "appstore",
+      "id": "586449534",
+      "category": "Productivity"
+    },
+    {
+      "name": "Slack",
+      "store": "playstore",
+      "id": "com.Slack",
+      "category": "Productivity"
+    },
+    {
+      "name": "Slack",
+      "store": "appstore",
+      "id": "618783545",
+      "category": "Productivity"
+    },
+    {
+      "name": "Zoom",
+      "store": "playstore",
+      "id": "us.zoom.videomeetings",
+      "category": "Productivity"
+    },
+    {
+      "name": "Zoom",
+      "store": "appstore",
+      "id": "546505307",
+      "category": "Productivity"
+    },
+    {
+      "name": "Instagram",
+      "store": "playstore",
+      "id": "com.instagram.android",
+      "category": "Social"
+    },
+    {
+      "name": "Instagram",
+      "store": "appstore",
+      "id": "389801252",
+      "category": "Social"
+    },
+    {
+      "name": "Facebook",
+      "store": "playstore",
+      "id": "com.facebook.katana",
+      "category": "Social"
+    },
+    {
+      "name": "Facebook",
+      "store": "appstore",
+      "id": "284882215",
+      "category": "Social"
+    },
+    {
+      "name": "Twitter",
+      "store": "playstore",
+      "id": "com.twitter.android",
+      "category": "Social"
+    },
+    {
+      "name": "Twitter",
+      "store": "appstore",
+      "id": "333903271",
+      "category": "Social"
+    },
+    {
+      "name": "TikTok",
+      "store": "playstore",
+      "id": "com.zhiliaoapp.musically",
+      "category": "Social"
+    },
+    {
+      "name": "TikTok",
+      "store": "appstore",
+      "id": "835599320",
+      "category": "Social"
+    },
+    {
+      "name": "LinkedIn",
+      "store": "playstore",
+      "id": "com.linkedin.android",
+      "category": "Social"
+    },
+    {
+      "name": "LinkedIn",
+      "store": "appstore",
+      "id": "288429040",
+      "category": "Social"
+    }
+  ]
+}
