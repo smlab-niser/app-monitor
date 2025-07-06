@@ -1,274 +1,284 @@
-# App Monitor System
+# App Store Scraper
 
-A comprehensive Linux-based monitoring system that tracks app updates, version numbers, and sizes across Google Play Store and Apple App Store for popular applications.
+A robust Python-based tool for monitoring app updates across Google Play Store and Apple App Store. This tool uses the reliable `google-play-scraper` library for Google Play Store data and the iTunes API for Apple App Store data.
 
 ## Features
 
-- **Multi-Store Support**: Monitors both Google Play Store and Apple App Store
-- **Comprehensive App Coverage**: Tracks 60+ popular apps across categories:
-  - Finance & Banking (Google Pay, PhonePe, Paytm, HDFC, SBI, ICICI)
-  - Entertainment (Netflix, Disney+ Hotstar, Prime Video, YouTube)
-  - Messaging (WhatsApp, Signal, Telegram)
-  - Shopping (Amazon, Flipkart, Blinkit, Swiggy, Zomato)
-  - Productivity (Google Maps, Docs, Office suite, Slack, Zoom)
-  - Social Media (Instagram, Facebook, Twitter, TikTok, LinkedIn)
-- **Automated Scheduling**: Configurable cron jobs for regular monitoring
-- **Multiple Output Formats**: JSON results with timestamps and metadata
-- **Error Handling**: Robust error handling and logging
-- **Email Notifications**: Optional email alerts for monitoring completion
-- **Rate Limiting**: Built-in delays to avoid being blocked by stores
+- **Reliable Google Play Store scraping** using `google-play-scraper` library
+- **Apple App Store support** via iTunes API
+- **Bulk monitoring** of multiple apps
+- **Detailed app information** including version, size, ratings, and more
+- **Automated monitoring** with shell script
+- **Error handling** and fallback mechanisms
+- **JSON output** for easy integration
+- **Rate limiting** to avoid being blocked
 
 ## Installation
 
-### Quick Installation
-
-1. **Download all files** to your preferred directory:
-   ```bash
-   mkdir ~/app-monitor
-   cd ~/app-monitor
-   # Copy all the script files here
-   ```
-
-2. **Run the setup script**:
-   ```bash
-   chmod +x setup.sh
-   ./setup.sh
-   ```
-
-### Manual Installation
-
-1. **Install dependencies**:
-   ```bash
-   # Ubuntu/Debian
-   sudo apt-get install curl jq python3 python3-pip cron mailutils
-   
-   # CentOS/RHEL
-   sudo yum install curl jq python3 python3-pip crontabs mailx
-   
-   # Install Python dependencies
-   pip3 install --user requests
-   ```
-
-2. **Set up files**:
-   ```bash
-   chmod +x app_monitor.sh
-   chmod +x app_scraper.py
-   chmod +x cron_config.sh
-   ```
-
-## Configuration
-
-### App Configuration
-
-Edit `app_config.json` to add/remove apps or modify categories. The configuration includes:
-
-- **App Name**: Display name for the app
-- **Store**: Either "playstore" or "appstore"
-- **ID**: Package ID for Play Store or App ID for App Store
-- **Category**: App category for organization
-
-### Monitoring Configuration
-
-Create `monitor_config.conf` for additional settings:
+### Quick Setup
 
 ```bash
-NOTIFICATION_EMAIL="your-email@example.com"
-LOG_RETENTION_DAYS=30
-MAX_PARALLEL_REQUESTS=3
-REQUEST_DELAY=2
-OUTPUT_FORMAT="json"
-BACKUP_RESULTS=true
-BACKUP_DIR="./backups"
+# Clone or download the files
+# Run the setup script
+chmod +x setup.sh
+./setup.sh
 ```
+
+### Manual Setup
+
+1. **Install Python dependencies:**
+   ```bash
+   pip3 install -r requirements.txt
+   ```
+
+2. **Install system dependencies:**
+   ```bash
+   # Ubuntu/Debian
+   sudo apt-get install jq
+   
+   # macOS
+   brew install jq
+   
+   # CentOS/RHEL
+   sudo yum install jq
+   ```
+
+3. **Make scripts executable:**
+   ```bash
+   chmod +x app_scraper.py app_monitor.sh test_scraper.py
+   ```
 
 ## Usage
 
-### Manual Execution
+### Individual App Scraping
 
-Run the monitor once:
 ```bash
-./app_monitor.sh
+# Google Play Store
+python3 app_scraper.py playstore com.flipkart.android "Flipkart"
+
+# Apple App Store
+python3 app_scraper.py appstore 1059655371 "Instagram"
+
+# Save to file
+python3 app_scraper.py playstore com.whatsapp "WhatsApp" --output whatsapp_info.json
 ```
 
-### Automated Scheduling
+### Bulk Monitoring
 
-#### Using Cron (Recommended)
-
-1. **Every 6 hours** (recommended):
-   ```bash
-   crontab -e
-   # Add this line:
-   0 */6 * * * cd /home/user/app-monitor && ./app_monitor.sh >> ./cron.log 2>&1
-   ```
-
-2. **Daily at 2 AM**:
-   ```bash
-   0 2 * * * cd /home/user/app-monitor && ./app_monitor.sh >> ./cron.log 2>&1
-   ```
-
-3. **Using the cron helper script**:
-   ```bash
-   ./cron_config.sh install /path/to/app_monitor.sh "0 */6 * * *" "your-email@example.com"
-   ```
-
-#### Using Systemd (Alternative)
-
-The setup script can create systemd services for more advanced scheduling.
-
-## Output
-
-### JSON Output Format
-
-Results are saved in timestamped JSON files:
-
-```json
-{
-  "monitoring_time": "2025-07-06T10:30:00Z",
-  "apps": [
-    {
-      "app_name": "WhatsApp",
-      "package_id": "com.whatsapp",
-      "store": "Google Play Store",
-      "version": "2.24.15.75",
-      "last_updated": "July 1, 2025",
-      "size": "65.2 MB",
-      "fetch_time": "2025-07-06T10:30:15Z",
-      "status": "success"
-    }
-  ]
-}
-```
-
-### Log Files
-
-- `app_monitor.log`: Main application logs
-- `cron.log`: Cron job execution logs
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Script not executing**:
-   ```bash
-   chmod +x app_monitor.sh
-   ```
-
-2. **Cron job not running**:
-   ```bash
-   # Check cron service
-   sudo systemctl status cron  # Ubuntu/Debian
-   sudo systemctl status crond # CentOS/RHEL
-   
-   # Check cron logs
-   ./cron_config.sh logs
-   ```
-
-3. **Rate limiting issues**:
-   - Increase `REQUEST_DELAY` in configuration
-   - Reduce `MAX_PARALLEL_REQUESTS`
-
-4. **Missing dependencies**:
-   ```bash
-   # Check if all tools are installed
-   which curl jq python3
-   ```
-
-### Troubleshooting Script
-
-Run the built-in troubleshooting:
-```bash
-./cron_config.sh troubleshoot
-```
-
-## API Rate Limits
-
-### Google Play Store
-- No official API; uses web scraping
-- Implement delays between requests
-- May require IP rotation for high-volume usage
-
-### Apple App Store
-- Uses official iTunes Search API
-- Rate limit: ~20 requests per minute
-- More reliable than Play Store scraping
-
-## Security Considerations
-
-- **No Authentication Required**: Uses public APIs and web scraping
-- **Rate Limiting**: Implements delays to be respectful to services
-- **Data Privacy**: Only collects publicly available app information
-- **No Personal Data**: Does not access or store personal information
-
-## Customization
-
-### Adding New Apps
-
-1. Find the app's package ID (Play Store) or App ID (App Store)
-2. Add to `app_config.json`:
+1. **Configure apps to monitor:**
+   Edit `app_config.json`:
    ```json
    {
-     "name": "App Name",
-     "store": "playstore",
-     "id": "com.example.app",
-     "category": "Category"
+     "apps": [
+       {
+         "store": "playstore",
+         "id": "com.flipkart.android",
+         "name": "Flipkart"
+       },
+       {
+         "store": "appstore",
+         "id": "1059655371",
+         "name": "Instagram"
+       }
+     ]
    }
    ```
 
-### Modifying Categories
+2. **Run monitoring:**
+   ```bash
+   ./app_monitor.sh
+   ```
 
-Edit the `category` field in `app_config.json` to organize apps differently.
+3. **Advanced options:**
+   ```bash
+   # Custom config file
+   ./app_monitor.sh --config my_apps.json
+   
+   # Email notifications
+   ./app_monitor.sh --email user@example.com
+   
+   # Verbose output
+   ./app_monitor.sh --verbose
+   ```
 
-### Custom Notification Scripts
+### Testing
 
-Modify the notification section in `app_monitor.sh` to integrate with:
-- Slack webhooks
-- Discord notifications
-- Custom APIs
-- SMS services
+```bash
+# Run comprehensive tests
+python3 test_scraper.py
 
-## Performance
+# Test specific app
+python3 app_scraper.py playstore com.whatsapp "WhatsApp" --verbose
+```
 
-### Resource Usage
-- **Memory**: ~50MB during execution
-- **CPU**: Minimal impact
-- **Network**: ~1-2MB per monitoring cycle
-- **Storage**: ~1MB per day for logs and results
+## Output Format
 
-### Optimization Tips
-1. Monitor only essential apps
-2. Adjust monitoring frequency based on needs
-3. Use log rotation to manage disk space
-4. Consider running during off-peak hours
+The scraper returns detailed JSON information:
+
+### Google Play Store Output
+```json
+{
+  "app_name": "Flipkart",
+  "package_id": "com.flipkart.android",
+  "store": "Google Play Store",
+  "version": "8.9.0",
+  "last_updated": "2024-01-15",
+  "size": "Varies with device",
+  "developer": "Flipkart",
+  "rating": 4.3,
+  "reviews": 5000000,
+  "installs": "500,000,000+",
+  "price": "Free",
+  "url": "https://play.google.com/store/apps/details?id=com.flipkart.android",
+  "fetch_time": "2024-01-20T10:30:00.000Z",
+  "status": "success"
+}
+```
+
+### Apple App Store Output
+```json
+{
+  "app_name": "Instagram",
+  "app_id": "1059655371",
+  "store": "Apple App Store",
+  "version": "309.0",
+  "last_updated": "2024-01-18",
+  "size": "123.4 MB",
+  "developer": "Instagram, Inc.",
+  "rating": 4.8,
+  "reviews": 2500000,
+  "price": "Free",
+  "bundle_id": "com.burbn.instagram",
+  "url": "https://apps.apple.com/us/app/instagram/id1059655371",
+  "fetch_time": "2024-01-20T10:30:00.000Z",
+  "status": "success"
+}
+```
+
+## Finding App IDs
+
+### Google Play Store
+The package ID is in the URL:
+```
+https://play.google.com/store/apps/details?id=com.flipkart.android
+                                            ^^^^^^^^^^^^^^^^^^^^
+```
+
+### Apple App Store
+The app ID is in the URL:
+```
+https://apps.apple.com/us/app/instagram/id1059655371
+                                         ^^^^^^^^^^
+```
+
+## Common Issues & Solutions
+
+### 1. Google Play Store Scraping Fails
+
+**Problem:** Getting "N/A" values or errors for Google Play Store apps.
+
+**Solution:**
+- Ensure `google-play-scraper` is installed: `pip3 install google-play-scraper`
+- Check if the package ID is correct
+- Some apps might be region-restricted
+
+### 2. Rate Limiting
+
+**Problem:** Getting blocked by app stores.
+
+**Solution:**
+- The scraper includes built-in rate limiting (2-second delays)
+- For bulk operations, consider increasing delays
+- Use VPN if necessary
+
+### 3. Apple App Store Issues
+
+**Problem:** App not found or incorrect data.
+
+**Solution:**
+- Verify the app ID is correct
+- Some apps might not be available in all regions
+- Check if the app is still published
+
+## Advanced Usage
+
+### Custom Python Integration
+
+```python
+from app_scraper import AppStoreScraper
+
+scraper = AppStoreScraper()
+
+# Single app
+result = scraper.scrape_app('playstore', 'com.whatsapp', 'WhatsApp')
+
+# Bulk scraping
+apps = [
+    {'store': 'playstore', 'app_id': 'com.flipkart.android', 'app_name': 'Flipkart'},
+    {'store': 'appstore', 'app_id': '1059655371', 'app_name': 'Instagram'}
+]
+results = scraper.bulk_scrape(apps)
+```
+
+### Automated Monitoring with Cron
+
+```bash
+# Add to crontab for daily monitoring
+# crontab -e
+0 9 * * * /path/to/app_monitor.sh --email user@example.com
+```
+
+## Dependencies
+
+- **Python 3.6+**
+- **requests** - HTTP library
+- **google-play-scraper** - Google Play Store scraping
+- **jq** - JSON processing (for shell script)
+- **curl** - HTTP requests (for shell script)
+
+## Troubleshooting
+
+### Import Error
+```bash
+# If you get import errors
+pip3 install --upgrade requests google-play-scraper
+```
+
+### Permission Denied
+```bash
+# Make scripts executable
+chmod +x app_scraper.py app_monitor.sh
+```
+
+### JSON Parse Error
+```bash
+# Check if jq is installed
+which jq
+# Install if missing
+sudo apt-get install jq
+```
 
 ## Contributing
 
-To add support for more apps or improve functionality:
-
 1. Fork the repository
-2. Add new app configurations
-3. Test thoroughly
-4. Submit pull requests
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ## License
 
-This project is open-source and available under the MIT License.
+This project is provided as-is for educational and monitoring purposes. Please respect the terms of service of Google Play Store and Apple App Store when using this tool.
 
-## Support
+## Changelog
 
-For issues or questions:
-1. Check the troubleshooting section
-2. Review log files for error messages
-3. Ensure all dependencies are installed
-4. Verify app IDs and package names are correct
+### Version 2.0
+- Added `google-play-scraper` library support
+- Improved error handling
+- Enhanced data extraction
+- Added bulk scraping functionality
+- Better rate limiting
+- Comprehensive testing suite
 
-## Version History
-
-- **v1.0**: Initial release with basic monitoring
-- **v1.1**: Added Python helper script
-- **v1.2**: Enhanced error handling and logging
-- **v1.3**: Added systemd service support
-- **v1.4**: Improved rate limiting and reliability
-
-## Disclaimer
-
-This tool is for educational and monitoring purposes only. Please respect the terms of service of Google Play Store and Apple App Store. The authors are not responsible for any misuse or violations of service terms.
+### Version 1.0
+- Initial release with basic scraping functionality
